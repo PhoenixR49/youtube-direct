@@ -16,15 +16,17 @@ const staticPath = __dirname + "/public/static/";
 let lang = "en";
 function getUserLang(request) {
     const supportedLanguages = fs.readdirSync("./public/html/");
-    const userLang = request.acceptsLanguages().toString().split(",");
+    const userLangs = request.acceptsLanguages().toString().split(",");
 
-    for (let i = 0; i < userLang.length; i++) {
-        if (userLang[i].includes(";")) {
-            userLang[i] = userLang[i].split(";")[0];
+    for (let i = 0; i < userLangs.length; i++) {
+        if (userLangs[i].includes(";")) {
+            userLangs[i] = userLangs[i].split(";")[0];
+        } else if (userLangs[i].includes("-")) {
+            userLangs[i] = userLangs[i].split("-")[0];
         }
     }
 
-    addLanguage(userLang);
+    addLanguage(userLangs);
 
     function addLanguage(checkLangs = []) {
         for (let checkLangsCounter = 0; checkLangsCounter < checkLangs.length; checkLangsCounter++) {

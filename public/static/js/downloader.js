@@ -26,6 +26,9 @@ socket.on("wrong-url", () => {
     } else if (document.querySelector("html").lang === "fr") {
         downloadLink.innerHTML = "Le lien que vous avez fournit n'est pas valide !";
         submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
+    } else if (document.querySelector("html").lang === "ch") {
+        downloadLink.innerHTML = "您提供的链接无效！";
+        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;下载';
     }
     videoInput.removeAttribute("disabled");
     formatInput.removeAttribute("disabled");
@@ -45,15 +48,27 @@ function setDownloading() {
 
 function setDownloaded(videoPath) {
     isDownloading = false;
-    if (formatInput.value === "mp4") {
-        downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Download video</a>`;
-    } else if (formatInput.value === "mp3") {
-        downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Download audio</a>`;
-    }
     if (document.querySelector("html").lang === "en") {
+        if (formatInput.value === "mp4") {
+            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Download video</a>`;
+        } else if (formatInput.value === "mp3") {
+            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Download audio</a>`;
+        }
         submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
     } else if (document.querySelector("html").lang === "fr") {
+        if (formatInput.value === "mp4") {
+            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Télécharger la vidéo</a>`;
+        } else if (formatInput.value === "mp3") {
+            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Télécharger l'audio</a>`;
+        }
         submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
+    } else if (document.querySelector("html").lang === "ch") {
+        if (formatInput.value === "mp4") {
+            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;下载影片</a>`;
+        } else if (formatInput.value === "mp3") {
+            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;下载音频</a>`;
+        }
+        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;下载';
     }
     submitButton.removeAttribute("disabled");
     formatInput.removeAttribute("disabled");
