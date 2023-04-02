@@ -77,20 +77,6 @@ io.on("connection", (socket) => {
             stream.on("finish", () => {
                 io.to(roomId).emit("video-downloaded", "/static" + videoRelativePath);
             });
-            
-            if (format === "mp4") {
-                videoRelativePath = "/videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
-                stream = ytdl(url, {
-                    filter: "audioandvideo",
-                    quality: "highest",
-                });
-            } else if (format === "mp3") {
-                videoRelativePath = "/audios/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
-                stream = ytdl(url, {
-                    filter: "audioonly",
-                    quality: "highest",
-                });
-            }
 
             const videoPath = staticPath + videoRelativePath;
             stream.pipe(fs.createWriteStream(videoPath));
