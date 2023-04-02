@@ -67,7 +67,7 @@ io.on("connection", (socket) => {
                     quality: "highest",
                 });
             } else if (format === "mp3") {
-                videoRelativePath = "/audio/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
+                videoRelativePath = "/audios/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
                 stream = ytdl(url, {
                     filter: "audioonly",
                     quality: "highest",
