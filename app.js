@@ -7,6 +7,8 @@ const io = require("socket.io")(http);
 const crypto = require("crypto");
 
 app.use("/static", express.static(__dirname + "/public/static/"));
+app.use("/sitemap.xml", express.static(__dirname + "/sitemap.xml"));
+app.use("/robots.txt", express.static(__dirname + "/robots.txt"));
 
 const pagesPath = __dirname + "/public/html/";
 const staticPath = __dirname + "/public/static/";
