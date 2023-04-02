@@ -12,5 +12,5 @@ $ npm start
 
 There you go, you have a YouTube Downloader running locally on your computer !
 
-## Information
-The web app is coming soon !
+## Web App
+> Go to [the online version](https://ytdl-by-phoenixr49.glitch.me).
