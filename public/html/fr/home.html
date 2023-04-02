@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Primary Meta Tags -->
+        <title>YouTube Downloader by Phoenix_R49 | Le téléchargeur open-source</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index,nofollow" />
+        <meta name="title" content="YouTube Downloader by Phoenix_R49 | Le téléchargeur open-source" />
+        <meta name="theme-color" content="#fe0000" />
+        <meta name="author" content="Phoenix_R49" />
+        <meta name="copyright" content="Phoenix_R49" />
+        <meta name="description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Downloader par Phoenix_R49 est ce dont vous avvez besoin. Téléchargez vos vidéos maintenant !" />
+        <meta name="google-site-verification" content="nDlInL_Q-ngZgcMwQ-37n3HVIzL_iOpOvooYhrHGTp4" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="YouTube Downloader by Phoenix_R49 | Le téléchargeur open-source" />
+        <meta property="og:url" content="https://ytdl-by-phoenixr49.glitch.me/" />
+        <meta property="og:title" content="YouTube Downloader by Phoenix_R49 | Le téléchargeur open-source" />
+        <meta property="og:description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Downloader par Phoenix_R49 est ce dont vous avvez besoin. Téléchargez vos vidéos maintenant !" />
+        <meta property="og:image" content="https://ytdl-by-phoenixr49.glitch.me/img/branding/social.png" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://ytdl-by-phoenixr49.glitch.me/" />
+        <meta property="twitter:title" content="YouTube Downloader by Phoenix_R49 | Le téléchargeur open-source" />
+        <meta property="twitter:description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Downloader par Phoenix_R49 est ce dont vous avvez besoin. Téléchargez vos vidéos maintenant !" />
+        <meta property="twitter:image" content="https://ytdl-by-phoenixr49.glitch.me/img/branding/social.png" />
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "Project",
+                "name": "YouTube Downloader by Phoenix_R49 | Le téléchargeur open-source",
+                "url": "https://ytdl-by-phoenixr49.glitch.me/",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "France"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <main role="main">
+            <form role="form">
+                <div>
+                    <input type="url" name="videoURL" autocomplete="off" placeholder="Lien d'une vidéos YouTube" />
+                    <select name="format">
+                        <option value="mp4">Vidéo et audio</option>
+                        <option value="mp3">Audio uniquement</option>
+                    </select>
+                    <button type="submit" id="submit" role="button"><i class="fa-solid fa-download"></i>&nbsp;Télécharger</button>
+                </div>
+                <div id="download-link" role="alert"></div>
+            </form>
+        </main>
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/static/js/downloader.js"></script>
+</html>

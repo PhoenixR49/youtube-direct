@@ -1,7 +1,7 @@
 const socket = io();
 const form = document.querySelector("form");
 const submitButton = document.querySelector("#submit");
-const videoInput = document.getElementsByName("video-url")[0];
+const videoInput = document.getElementsByName("videoURL")[0];
 const formatInput = document.getElementsByName("format")[0];
 const downloadLink = document.getElementById("download-link");
 
@@ -20,19 +20,27 @@ socket.on("video-downloaded", (videoPath) => {
 });
 
 socket.on("wrong-url", () => {
-    downloadLink.innerHTML = "The URL you have provided is not valid!";
-    submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
-    submitButton.removeAttribute("title");
+    if (document.querySelector("html").lang === "en") {
+        downloadLink.innerHTML = "The link you have provided is not valid !";
+        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
+    } else if (document.querySelector("html").lang === "fr") {
+        downloadLink.innerHTML = "Le lien que vous avez fournit n'est pas valide !";
+        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
+    }
     videoInput.removeAttribute("disabled");
+    formatInput.removeAttribute("disabled");
+    submitButton.removeAttribute("disabled");
+    isDownloading = false;
 });
 
 function setDownloading() {
     isDownloading = true;
     downloadLink.innerHTML = "";
     submitButton.innerHTML = '<i class="fa-solid fa-sync fa-spin"></i>';
-    submitButton.setAttribute("title", "Downloading video");
     videoInput.setAttribute("disabled", true);
     formatInput.setAttribute("disabled", true);
+    submitButton.setAttribute("disabled", true);
+    downloadLink.innerHTML = "";
 }
 
 function setDownloaded(videoPath) {
@@ -42,8 +50,12 @@ function setDownloaded(videoPath) {
     } else if (formatInput.value === "mp3") {
         downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Download audio</a>`;
     }
-    submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
-    submitButton.removeAttribute("title");
+    if (document.querySelector("html").lang === "en") {
+        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
+    } else if (document.querySelector("html").lang === "fr") {
+        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
+    }
+    submitButton.removeAttribute("disabled");
     formatInput.removeAttribute("disabled");
     videoInput.removeAttribute("disabled");
 }

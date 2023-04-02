@@ -13,43 +13,89 @@ app.use("/robots.txt", express.static(__dirname + "/robots.txt"));
 const pagesPath = __dirname + "/public/html/";
 const staticPath = __dirname + "/public/static/";
 
+let lang = "en";
+function getUserLang(request) {
+    const supportedLanguages = fs.readdirSync("./public/html/");
+    const userLang = request.acceptsLanguages().toString().split(",");
+
+    for (let i = 0; i < userLang.length; i++) {
+        if (userLang[i].includes(";")) {
+            userLang[i] = userLang[i].split(";")[0];
+        }
+    }
+
+    addLanguage(userLang);
+
+    function addLanguage(checkLangs = []) {
+        for (let checkLangsCounter = 0; checkLangsCounter < checkLangs.length; checkLangsCounter++) {
+            const checkLang = checkLangs[checkLangsCounter];
+            for (const supportedLanguage of supportedLanguages) {
+                if (checkLang === supportedLanguage) {
+                    lang = checkLang;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+
 app.get("/", (req, res) => {
-    res.sendFile(pagesPath + "/home.html");
+    getUserLang(req);
+    res.sendFile(pagesPath + lang + "/home.html");
 });
 
 io.on("connection", (socket) => {
+    const roomId = socket.id;
+    socket.join(roomId);
     socket.on("download-video", async (data) => {
         const url = data[0];
         const format = data[1];
         if (ytdl.validateURL(url)) {
             let stream;
+            let videoRelativePath;
+
+            let videoTitle;
+            await ytdl.getInfo(url).then((data) => {
+                videoTitle = data.videoDetails.title.toLocaleLowerCase().split(" ").join("-");
+            });
+
             if (format === "mp4") {
+                videoRelativePath = "/videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
                 stream = ytdl(url, {
                     filter: "audioandvideo",
                     quality: "highest",
                 });
             } else if (format === "mp3") {
+                videoRelativePath = "/audio/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
                 stream = ytdl(url, {
                     filter: "audioonly",
                     quality: "highest",
                 });
             }
 
-            let videoTitle;
-            await ytdl.getInfo(url).then((data) => {
-                videoTitle = data.videoDetails.title;
-            });
-
-            const videoRelativePath = "videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
-
             stream.on("finish", () => {
-                io.emit("video-downloaded", "/static/" + videoRelativePath);
+                io.to(roomId).emit("video-downloaded", "/static" + videoRelativePath);
             });
+            
+            if (format === "mp4") {
+                videoRelativePath = "/videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
+                stream = ytdl(url, {
+                    filter: "audioandvideo",
+                    quality: "highest",
+                });
+            } else if (format === "mp3") {
+                videoRelativePath = "/audios/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
+                stream = ytdl(url, {
+                    filter: "audioonly",
+                    quality: "highest",
+                });
+            }
 
             const videoPath = staticPath + videoRelativePath;
             stream.pipe(fs.createWriteStream(videoPath));
         } else {
-            io.emit("wrong-url");
+            io.to(roomId).emit("wrong-url");
         }
     });
 });
