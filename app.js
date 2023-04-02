@@ -23,12 +23,14 @@ io.on("connection", (socket) => {
             filter: "audioandvideo",
             quality: "highest",
         });
-        
+
+        const videoRelativePath = "videos/" + crypto.randomBytes(8).toString("hex") + "-" + Date.now() + ".mp4";
+
         stream.on("finish", () => {
-            io.emit("video-downloaded", videoPath);
+            io.emit("video-downloaded", "/static/" + videoRelativePath);
         });
 
-        const videoPath = staticPath + "videos/" + crypto.randomBytes(8).toString("hex") + "-" + Date.now() + ".mp4";
+        const videoPath = staticPath + videoRelativePath;
         stream.pipe(fs.createWriteStream(videoPath));
     });
 });
