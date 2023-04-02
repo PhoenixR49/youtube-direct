@@ -18,14 +18,29 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-    socket.on("download-video", (videoURL) => {
-        if (ytdl.validateURL(videoURL)) {
-            const stream = ytdl(videoURL, {
-                filter: "audioandvideo",
-                quality: "highest",
+    socket.on("download-video", async (data) => {
+        const url = data[0];
+        const format = data[1];
+        if (ytdl.validateURL(url)) {
+            let stream;
+            if (format === "mp4") {
+                stream = ytdl(url, {
+                    filter: "audioandvideo",
+                    quality: "highest",
+                });
+            } else if (format === "mp3") {
+                stream = ytdl(url, {
+                    filter: "audioonly",
+                    quality: "highest",
+                });
+            }
+
+            let videoTitle;
+            await ytdl.getInfo(url).then((data) => {
+                videoTitle = data.videoDetails.title;
             });
 
-            const videoRelativePath = "videos/" + crypto.randomBytes(8).toString("hex") + "-" + Date.now() + ".mp4";
+            const videoRelativePath = "videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
 
             stream.on("finish", () => {
                 io.emit("video-downloaded", "/static/" + videoRelativePath);

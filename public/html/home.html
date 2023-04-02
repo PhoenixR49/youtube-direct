@@ -66,13 +66,17 @@ Plus, it's open-source !"
         <title>YouTube Downloader by Phoenix_R49</title>
     </head>
     <body>
-        <main>
-            <form action="" method="post">
+        <main role="main">
+            <form action="" method="post" role="form">
                 <div>
-                    <input type="url" name="video-url" autocomplete="off" placeholder="URL of a YouTube video" />
-                    <button type="submit" id="submit"><i class="fa-solid fa-download"></i>&nbsp;Download</button>
+                    <input type="url" name="video-url" autocomplete="off" placeholder="URL of a YouTube video" role="" />
+                    <select name="format">
+                        <option value="mp4">Video and audio</option>
+                        <option value="mp3">Audio only</option>
+                    </select>
+                    <button type="submit" id="submit" role="button"><i class="fa-solid fa-download"></i>&nbsp;Download</button>
                 </div>
-                <div id="download-link"></div>
+                <div id="download-link" role="alert"></div>
             </form>
         </main>
     </body>

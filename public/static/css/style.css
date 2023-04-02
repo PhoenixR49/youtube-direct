@@ -41,7 +41,8 @@ form {
 }
 
 form input,
-form button {
+form button,
+form select {
     height: 30px;
     outline: none;
     border: none;
