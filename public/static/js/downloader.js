@@ -18,9 +18,11 @@ socket.on("video-downloaded", (videoPath) => {
     setDownloaded(videoPath);
 });
 
-socket.on("wrong-url", (videoPath) => {
+socket.on("wrong-url", () => {
     downloadLink.innerHTML = "The URL you have provided is not valid!";
     submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
+    submitButton.removeAttribute("title");
+    videoInput.removeAttribute("disabled");
 });
 
 function setDownloading() {
