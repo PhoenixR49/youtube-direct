@@ -19,19 +19,23 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
     socket.on("download-video", (videoURL) => {
-        const stream = ytdl(videoURL, {
-            filter: "audioandvideo",
-            quality: "highest",
-        });
+        if (ytdl.validateURL(videoURL)) {
+            const stream = ytdl(videoURL, {
+                filter: "audioandvideo",
+                quality: "highest",
+            });
 
-        const videoRelativePath = "videos/" + crypto.randomBytes(8).toString("hex") + "-" + Date.now() + ".mp4";
+            const videoRelativePath = "videos/" + crypto.randomBytes(8).toString("hex") + "-" + Date.now() + ".mp4";
 
-        stream.on("finish", () => {
-            io.emit("video-downloaded", "/static/" + videoRelativePath);
-        });
+            stream.on("finish", () => {
+                io.emit("video-downloaded", "/static/" + videoRelativePath);
+            });
 
-        const videoPath = staticPath + videoRelativePath;
-        stream.pipe(fs.createWriteStream(videoPath));
+            const videoPath = staticPath + videoRelativePath;
+            stream.pipe(fs.createWriteStream(videoPath));
+        } else {
+            io.emit("wrong-url");
+        }
     });
 });
 
