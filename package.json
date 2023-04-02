@@ -1,0 +1,29 @@
+{
+  "name": "youtube-downloader",
+  "version": "1.0.0",
+  "description": "***\r ```\r $ git clone https://github.com/PhoenixR49/youtube-downloader.git\r $ cd youtube-downloader \r $ npm install\r $ npm start\r ```\r > Go to http://localhost:3000 to start uploading your videos !",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [
+    "youtube",
+    "youtube downloader",
+    "ytdl"
+  ],
+  "author": "Phoenix_R49",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1",
+    "ytdl-core": "^4.11.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhoenixR49/youtube-downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PhoenixR49/youtube-downloader/issues"
+  },
+  "homepage": "https://github.com/PhoenixR49/youtube-downloader#readme"
+}
