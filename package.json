@@ -7,8 +7,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "node app.js",
-    "install": "npm install && npm start"
+    "start": "node ."
   },
   "keywords": [
     "youtube",

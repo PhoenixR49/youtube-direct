@@ -10,10 +10,7 @@
 ```
 $ git clone https://github.com/PhoenixR49/youtube-direct.git
 $ cd youtube-direct 
-$ npm run install
-```
-To launch the application for your next sessions, type the following command:
-```
+$ npm install
 $ npm start
 ```
 > Go to http://localhost:3000 to start uploading your videos !
