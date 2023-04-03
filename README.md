@@ -1,4 +1,9 @@
 # YouTube Downloader by Phoenix_R49
+![GitHub Repo stars](https://img.shields.io/github/stars/PhoenixR49/youtube-downloader)
+![GitHub watchers](https://img.shields.io/github/watchers/PhoenixR49/youtube-downloader)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/PhoenixR49/youtube-downloader)
+![GitHub all releases](https://img.shields.io/github/downloads/PhoenixR49/youtube-downloader/total)
+![GitHub](https://img.shields.io/github/license/PhoenixR49/youtube-downloader)
 
 ## Installation
 ***

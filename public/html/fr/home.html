@@ -50,13 +50,14 @@
         <main role="main">
             <form role="form">
                 <div>
-                    <input type="url" name="videoURL" autocomplete="off" placeholder="Lien d'une vidéo YouTube" />
+                    <input type="text" name="video" autocomplete="off" placeholder="Lien d'une vidéo YouTube ou recherche" />
                     <select name="format">
                         <option value="mp4">Vidéo et audio</option>
                         <option value="mp3">Audio uniquement</option>
                     </select>
-                    <button type="submit" id="submit" role="button"><i class="fa-solid fa-download"></i>&nbsp;Télécharger</button>
+                    <button type="submit" id="submit" role="button"></button>
                 </div>
+                <div class="search-results"></div>
                 <div id="download-link" role="alert"></div>
             </form>
         </main>

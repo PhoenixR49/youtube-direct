@@ -5,6 +5,8 @@ const ytdl = require("ytdl-core");
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const crypto = require("crypto");
+const axios = require("axios");
+require("dotenv").config();
 
 app.use("/static", express.static(__dirname + "/public/static/"));
 app.use("/sitemap.xml", express.static(__dirname + "/sitemap.xml"));
@@ -51,26 +53,26 @@ io.on("connection", (socket) => {
     const roomId = socket.id;
     socket.join(roomId);
     socket.on("download-video", async (data) => {
-        const url = data[0];
+        const video = data[0];
         const format = data[1];
-        if (ytdl.validateURL(url)) {
+        if (ytdl.validateURL(video)) {
             let stream;
             let videoRelativePath;
 
             let videoTitle;
-            await ytdl.getInfo(url).then((data) => {
+            await ytdl.getInfo(video).then((data) => {
                 videoTitle = data.videoDetails.title.toLocaleLowerCase().split(" ").join("-");
             });
 
             if (format === "mp4") {
                 videoRelativePath = "/videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
-                stream = ytdl(url, {
+                stream = ytdl(video, {
                     filter: "audioandvideo",
                     quality: "highest",
                 });
             } else if (format === "mp3") {
                 videoRelativePath = "/audios/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
-                stream = ytdl(url, {
+                stream = ytdl(video, {
                     filter: "audioonly",
                     quality: "highest",
                 });
@@ -83,7 +85,37 @@ io.on("connection", (socket) => {
             const videoPath = staticPath + videoRelativePath;
             stream.pipe(fs.createWriteStream(videoPath));
         } else {
-            io.to(roomId).emit("wrong-url");
+            axios({
+                method: "GET",
+                url: "https://youtube.googleapis.com/youtube/v3/search?q=" + video + "&part=snippet&maxResults=25&order=relevance&type=video&key=" + process.env.YOUTUBE_API_KEY,
+            })
+                .then((data) => {
+                    data = data.data.items;
+                    const resultsData = [];
+                    for (let i = 0; i < data.length; i++) {
+                        const video = data[i];
+                        const videoData = {
+                            url: "https://youtu.be/" + video.id.videoId,
+                            thumbnail: video.snippet.thumbnails.medium.url,
+                            author: video.snippet.channelTitle,
+                            title: video.snippet.title,
+                            description: video.snippet.description,
+                        };
+                        resultsData.push(videoData);
+                    }
+                    io.to(roomId).emit("search-results", resultsData);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    io.to(roomId).emit("error", error.code);
+                });
+        }
+    });
+    socket.on("videoInput-value", (value) => {
+        if (ytdl.validateURL(value)) {
+            socket.emit("videoInput-type", "default");
+        } else {
+            socket.emit("videoInput-type", "search");
         }
     });
 });

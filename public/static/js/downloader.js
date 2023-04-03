@@ -1,7 +1,7 @@
 const socket = io();
 const form = document.querySelector("form");
 const submitButton = document.querySelector("#submit");
-const videoInput = document.getElementsByName("videoURL")[0];
+const videoInput = document.getElementsByName("video")[0];
 const formatInput = document.getElementsByName("format")[0];
 const downloadLink = document.getElementById("download-link");
 
@@ -15,34 +15,44 @@ form.addEventListener("submit", (event) => {
     }
 });
 
+videoInput.addEventListener("input", (event) => {
+    if (videoInput.value !== "") {
+        socket.emit("videoInput-value", videoInput.value);
+        setDownloadButton("undisabled");
+    } else {
+        setDownloadButton("disabled");
+        setDownloadButton("search");
+    }
+});
+
 socket.on("video-downloaded", (videoPath) => {
     setDownloaded(videoPath);
 });
 
-socket.on("wrong-url", () => {
-    if (document.querySelector("html").lang === "en") {
-        downloadLink.innerHTML = "The link you have provided is not valid !";
-        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
-    } else if (document.querySelector("html").lang === "fr") {
-        downloadLink.innerHTML = "Le lien que vous avez fournit n'est pas valide !";
-        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
-    } else if (document.querySelector("html").lang === "ch") {
-        downloadLink.innerHTML = "您提供的链接无效！";
-        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;下载';
-    }
-    videoInput.removeAttribute("disabled");
-    formatInput.removeAttribute("disabled");
-    submitButton.removeAttribute("disabled");
+socket.on("download-button", (type) => {
+    setDownloadButton(type);
+});
+
+socket.on("search-results", (results) => {
+    setSearchResults(results);
+});
+
+socket.on("error", (error) => {
+    downloadLink.innerHTML = error;
     isDownloading = false;
+});
+
+socket.on("videoInput-type", (type) => {
+    setDownloadButton(type);
 });
 
 function setDownloading() {
     isDownloading = true;
     downloadLink.innerHTML = "";
-    submitButton.innerHTML = '<i class="fa-solid fa-sync fa-spin"></i>';
+    setDownloadButton("downloading");
     videoInput.setAttribute("disabled", true);
     formatInput.setAttribute("disabled", true);
-    submitButton.setAttribute("disabled", true);
+    setDownloadButton("disabled");
     downloadLink.innerHTML = "";
 }
 
@@ -54,23 +64,71 @@ function setDownloaded(videoPath) {
         } else if (formatInput.value === "mp3") {
             downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Download audio</a>`;
         }
-        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
     } else if (document.querySelector("html").lang === "fr") {
         if (formatInput.value === "mp4") {
             downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Télécharger la vidéo</a>`;
         } else if (formatInput.value === "mp3") {
             downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Télécharger l'audio</a>`;
         }
-        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
-    } else if (document.querySelector("html").lang === "ch") {
+    } else if (document.querySelector("html").lang === "zh") {
         if (formatInput.value === "mp4") {
             downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;下载影片</a>`;
         } else if (formatInput.value === "mp3") {
             downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;下载音频</a>`;
         }
-        submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;下载';
     }
-    submitButton.removeAttribute("disabled");
+    setDownloadButton("undisabled");
+    setDownloadButton("default");
     formatInput.removeAttribute("disabled");
     videoInput.removeAttribute("disabled");
 }
+
+function setDownloadButton(type) {
+    if (type === "downloading") {
+        submitButton.innerHTML = '<i class="fa-solid fa-sync fa-spin"></i>';
+    } else if (type === "default") {
+        if (document.querySelector("html").lang === "en") {
+            submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
+        } else if (document.querySelector("html").lang === "fr") {
+            submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
+        } else if (document.querySelector("html").lang === "zh") {
+            submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;下载';
+        }
+    } else if (type === "search") {
+        if (document.querySelector("html").lang === "en") {
+            submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;Search';
+        } else if (document.querySelector("html").lang === "fr") {
+            submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;Chercher';
+        } else if (document.querySelector("html").lang === "zh") {
+            submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;寻找';
+        }
+    } else if (type === "disabled") {
+        submitButton.setAttribute("style", "cursor: default;");
+    } else if (type === "undisabled") {
+        submitButton.removeAttribute("style");
+    }
+}
+
+function setSearchResults(results) {
+    document.querySelector(".search-results").innerHTML = "";
+    isDownloading = false;
+    setDownloadButton("undisabled");
+    setDownloadButton("search");
+    formatInput.removeAttribute("disabled");
+    videoInput.removeAttribute("disabled");
+    for (let i = 0; i < results.length; i++) {
+        const result = results[i];
+        const resultDiv = document.createElement("div");
+        resultDiv.classList.add("search-result");
+        resultDiv.innerHTML = `<div class="search-result" data-video-url="${result.url}"><img src="${result.thumbnail}" alt="Video thumbnail" /><div><h2>${result.title}</h2><span>${result.author}</span><p>${result.description}</p></div></div>`;
+        document.querySelector(".search-results").appendChild(resultDiv);
+        resultDiv.addEventListener("click", () => {
+            document.querySelector(".search-results").innerHTML = "";
+            setDownloading();
+            socket.emit("download-video", [result.url, formatInput.value]);
+        });
+    }
+}
+
+setDownloadButton("disabled");
+setDownloadButton("search");

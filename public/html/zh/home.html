@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
     <head>
         <link rel="stylesheet" href="/static/css/style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -51,12 +51,12 @@
         <main role="main">
             <form action="" method="post" role="form">
                 <div>
-                    <input type="url" name="video-url" autocomplete="off" placeholder="YouTube 视频的链接" role="" />
+                    <input type="text" name="video" autocomplete="off" placeholder="YouTube 视频的链接" role="" />
                     <select name="format">
                         <option value="mp4">视频和音频</option>
                         <option value="mp3">仅音频</option>
                     </select>
-                    <button type="submit" id="submit" role="button"><i class="fa-solid fa-download"></i>&nbsp;下载</button>
+                    <button type="submit" id="submit" role="button"></button>
                 </div>
                 <div id="download-link" role="alert"></div>
             </form>
