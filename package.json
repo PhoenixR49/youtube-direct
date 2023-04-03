@@ -1,7 +1,7 @@
 {
-  "name": "youtube-downloader",
+  "name": "youtube-direct",
   "version": "2",
-  "description": "***\r ```\r $ git clone https://github.com/PhoenixR49/youtube-downloader.git\r $ cd youtube-downloader \r $ npm install\r $ npm start\r ```\r > Go to http://localhost:3000 to start uploading your videos !",
+  "description": "***\r ```\r $ git clone https://github.com/PhoenixR49/youtube-direct.git\r $ cd youtube-direct \r $ npm install\r $ npm start\r ```\r > Go to http://localhost:3000 to start uploading your videos !",
   "main": "app.js",
   "scripts": {
     "start": "node ."
@@ -9,6 +9,8 @@
   "keywords": [
     "youtube",
     "youtube downloader",
+    "yt direct",
+    "youtube direct",
     "ytdl"
   ],
   "author": "Phoenix_R49",
@@ -22,10 +24,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PhoenixR49/youtube-downloader.git"
+    "url": "git+https://github.com/PhoenixR49/youtube-direct.git"
   },
   "bugs": {
-    "url": "https://github.com/PhoenixR49/youtube-downloader/issues"
+    "url": "https://github.com/PhoenixR49/youtube-direct/issues"
   },
-  "homepage": "https://github.com/PhoenixR49/youtube-downloader#readme"
+  "homepage": "https://github.com/PhoenixR49/youtube-direct#readme"
 }

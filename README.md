@@ -1,4 +1,4 @@
-# YouTube Downloader by Phoenix_R49
+# YouTube Direct
 ![GitHub Repo stars](https://img.shields.io/github/stars/PhoenixR49/youtube-downloader)
 ![GitHub watchers](https://img.shields.io/github/watchers/PhoenixR49/youtube-downloader)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/PhoenixR49/youtube-downloader)
