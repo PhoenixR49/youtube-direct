@@ -7,7 +7,8 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "build": "node ."
   },
   "keywords": [
     "youtube",
