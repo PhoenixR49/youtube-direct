@@ -1,11 +1,8 @@
 {
   "name": "youtube-direct",
   "version": "2.0",
-  "description": "***\r ```\r $ git clone https://github.com/PhoenixR49/youtube-direct.git\r $ cd youtube-direct \r $ npm install\r $ npm start\r ```\r > Go to http://localhost:3000 to start uploading your videos !",
+  "description": "How to download YouTube videos for FREE ? YouTube Direct is what you need. Download your videos online now !",
   "main": "app.js",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "start": "node ."
   },
