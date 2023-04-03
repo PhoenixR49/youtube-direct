@@ -4,6 +4,7 @@
   "description": "***\r ```\r $ git clone https://github.com/PhoenixR49/youtube-direct.git\r $ cd youtube-direct \r $ npm install\r $ npm start\r ```\r > Go to http://localhost:3000 to start uploading your videos !",
   "main": "app.js",
   "scripts": {
+    "start": "node .",
     "build": "npm start"
   },
   "keywords": [
