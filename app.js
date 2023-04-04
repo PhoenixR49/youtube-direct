@@ -49,6 +49,10 @@ app.get("/", (req, res) => {
     res.sendFile(pagesPath + lang + "/home.html");
 });
 
+app.all("*", (request, response) => {
+    response.redirect("/");
+});
+
 io.on("connection", (socket) => {
     const roomId = socket.id;
     socket.join(roomId);
