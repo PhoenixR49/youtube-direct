@@ -40,6 +40,8 @@ socket.on("search-results", (results) => {
 socket.on("error", (error) => {
     downloadLink.innerHTML = error;
     isDownloading = false;
+    setDownloadButton("undisabled");
+    setDownloadButton("search");
 });
 
 socket.on("videoInput-type", (type) => {
@@ -78,7 +80,7 @@ function setDownloaded(videoPath) {
         }
     }
     setDownloadButton("undisabled");
-    setDownloadButton("default");
+    setDownloadButton("search");
     formatInput.removeAttribute("disabled");
     videoInput.removeAttribute("disabled");
 }
@@ -103,7 +105,7 @@ function setDownloadButton(type) {
             submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;寻找';
         }
     } else if (type === "disabled") {
-        submitButton.setAttribute("style", "cursor: default;");
+        submitButton.setAttribute("style", "cursor: not-allowed;");
     } else if (type === "undisabled") {
         submitButton.removeAttribute("style");
     }
@@ -120,7 +122,7 @@ function setSearchResults(results) {
         const result = results[i];
         const resultDiv = document.createElement("div");
         resultDiv.classList.add("search-result");
-        resultDiv.innerHTML = `<div class="search-result" data-video-url="${result.url}"><img src="${result.thumbnail}" alt="Video thumbnail" /><div><h2>${result.title}</h2><span>${result.author}</span><p>${result.description}</p></div></div>`;
+        resultDiv.innerHTML = `<div class="search-result"><img src="${result.thumbnail}" alt="Video thumbnail" /><div><h2>${result.title}</h2><span>${result.author}</span><p>${result.description}</p></div></div>`;
         document.querySelector(".search-results").appendChild(resultDiv);
         resultDiv.addEventListener("click", () => {
             document.querySelector(".search-results").innerHTML = "";

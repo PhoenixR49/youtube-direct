@@ -18,4 +18,4 @@ $ npm start
 There you go, you have a YouTube Downloader running locally on your computer !
 
 ## Web App
-> Go to [the online version](https://youtube-direct.glitch.me/).
+> Go to [the online version](https://youtube-direct.vercel.app/).
