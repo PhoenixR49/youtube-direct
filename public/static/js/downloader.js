@@ -7,18 +7,37 @@ const downloadLink = document.getElementById("download-link");
 
 let isDownloading = false;
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (!isDownloading) {
-        setDownloading();
-        socket.emit("download-video", [videoInput.value, formatInput.value]);
-    }
-});
+(() => {
+    "use strict";
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll(".needs-validation");
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach((form) => {
+        form.addEventListener(
+            "submit",
+            (event) => {
+                event.preventDefault();
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                } else {
+                    if (!isDownloading) {
+                        setDownloading();
+                        socket.emit("download-video", [videoInput.value, formatInput.value]);
+                    }
+                }
+
+                form.classList.add("was-validated");
+            },
+            false
+        );
+    });
+})();
 
 videoInput.addEventListener("input", (event) => {
     if (videoInput.value !== "") {
         socket.emit("videoInput-value", videoInput.value);
-        setDownloadButton("undisabled");
     } else {
         setDownloadButton("disabled");
         setDownloadButton("search");
@@ -40,7 +59,8 @@ socket.on("search-results", (results) => {
 socket.on("error", (error) => {
     downloadLink.innerHTML = error;
     isDownloading = false;
-    setDownloadButton("undisabled");
+    videoInput.removeAttribute("disabled");
+    formatInput.removeAttribute("disabled");
     setDownloadButton("search");
 });
 
@@ -114,7 +134,6 @@ function setDownloadButton(type) {
 function setSearchResults(results) {
     document.querySelector(".search-results").innerHTML = "";
     isDownloading = false;
-    setDownloadButton("undisabled");
     setDownloadButton("search");
     formatInput.removeAttribute("disabled");
     videoInput.removeAttribute("disabled");
@@ -132,5 +151,4 @@ function setSearchResults(results) {
     }
 }
 
-setDownloadButton("disabled");
 setDownloadButton("search");
