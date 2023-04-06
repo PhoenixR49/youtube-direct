@@ -12,7 +12,7 @@ const { Readable } = require("stream");
 require("dotenv").config();
 
 app.use("/static", express.static(__dirname + "/public/static/"));
-app.use("/static/libs/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist"))
+app.use("/static/libs/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist"));
 app.use("/robots.txt", express.static(__dirname + "/robots.txt"));
 
 const appStartDate = new Date();
@@ -96,7 +96,8 @@ io.on("connection", (socket) => {
             let videoTitle;
             await ytdl.getInfo(video).then((data) => {
                 videoTitle = data.videoDetails.title.toLocaleLowerCase().split(" ").join("-");
-            });
+            })
+            .catch(error => io.to(roomId).emit("error", error));
 
             if (format === "mp4") {
                 videoRelativePath = "/videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
@@ -158,6 +159,6 @@ http.listen(3000, () => {
     console.log("The server is running !");
     setInterval(() => {
         const lunchingTime = Date.now() - appStartDate.getTime();
-        console.log(`Application lancée depuis : ${(lunchingTime / 3600000).toFixed()} heures`)
+        console.log(`Application launched for ${(lunchingTime / 3600000).toFixed()} hour(s)`);
     }, 3600000);
 });

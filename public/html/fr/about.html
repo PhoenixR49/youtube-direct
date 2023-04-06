@@ -6,13 +6,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Primary Meta Tags -->
-        <title>YouTube Direct | Téléchargeur YouTube</title>
+        <title>À propos de YouTube Direct</title>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index,follow" />
-        <meta name="title" content="YouTube Direct | Téléchargeur YouTube" />
+        <meta name="robots" content="index,nofollow" />
+        <meta name="title" content="À propos de YouTube Direct" />
         <meta name="theme-color" content="#fe0000" />
         <meta name="author" content="Phoenix_R49" />
         <meta name="copyright" content="Phoenix_R49" />
@@ -21,18 +21,18 @@
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="YouTube Direct | Téléchargeur YouTube" />
+        <meta property="og:site_name" content="YouTube Direct" />
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:url" content="https://youtube-direct.vercel.app/" />
-        <meta property="og:title" content="YouTube Direct | Téléchargeur YouTube" />
-        <meta property="og:description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Direct est ce dont vous avez besoin. Téléchargez vos vidéos maintenant !" />
+        <meta property="og:title" content="À propos de YouTube Direct" />
+        <meta property="og:description" content="Comment télécharger des vidéos YouTube ? YouTube Direct est ce dont vous avez besoin, téléchargez des vidéos YouTube et récupérez les en format MP3 ou MP4 pour pouvoir les lire sans connexion !" />
         <meta property="og:image" content="https://youtube-direct.vercel.app/img/branding/social.png" />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://youtube-direct.vercel.app/" />
-        <meta property="twitter:title" content="YouTube Direct | Téléchargeur YouTube" />
-        <meta property="twitter:description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Direct est ce dont vous avez besoin. Téléchargez vos vidéos maintenant !" />
+        <meta property="twitter:title" content="À propos de YouTube Direct" />
+        <meta property="twitter:description" content="Comment télécharger des vidéos YouTube ? YouTube Direct est ce dont vous avez besoin, téléchargez des vidéos YouTube et récupérez les en format MP3 ou MP4 pour pouvoir les lire sans connexion !" />
         <meta property="twitter:image" content="https://youtube-direct.vercel.app/img/branding/social.png" />
 
         <script type="application/ld+json">
@@ -51,32 +51,21 @@
     <body>
         <header role="heading">
             <nav>
-                <a href="/" class="active">Télécharger</a>
-                <a href="/about">À propos</a>
+                <a href="/">Télécharger</a>
+                <a href="/about" class="active">À propos</a>
             </nav>
         </header>
-        <main role="main" class="center">
-            <div class="downloader-container">
-                <form role="form" class="downloader row g-3 needs-validation" novalidate>
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" autocomplete="off" name="video" placeholder="Lien d'une vidéo YouTube ou recherche" aria-label="Search video or url input" required />
-                        <div class="invalid-feedback">Veuillez fournir un lien ou un recherche.</div>
-                    </div>
-                    <div class="col-md-5">
-                        <select class="form-select form-select" name="format" aria-label="Format select" required>
-                            <option selected disabled value="">Choisir le format dans lequel la vidéo sera téléchargée</option>
-                            <option value="mp4">Vidéo et audio</option>
-                            <option value="mp3">Audio uniquement</option>
-                        </select>
-                        <div class="invalid-feedback">Veuillez séléctionner le format de téléchargement.</div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary" type="submit" id="submit" role="button"></button>
-                    </div>
-                </form>
-                <div class="col-md-12 search-results"></div>
-                <div class="col-md-12" id="download-link" role="alert"></div>
-            </div>
+        <main role="main">
+            <article role="article" style="margin-top: 70px">
+                <h1 id="introduction" role="contentinfo"><b>YouTube Direct</b></h1>
+                <p role="text">YouTube Direct est un projet créé le 2 avril 2023 par Phoenix_R49 pour permettre à tout le monde de pouvoir télécharger des vidéos YouTube gratuitement et sans publicités.</p>
+                <h2 id="creative-commons" role="contentinfo">Creative Commons</h2>
+                <p role="text">Le projet est sous une licence Creative Commons, celle-ci vous permet de copier le <a href="https://github.com/PhoenixR49/youtube-direct" target="_blank" rel="noopener noreferrer">code</a>, de le modifier et de le redistribuer (plus d'informations <a href="#license">ici</a>).</p>
+                <h2 id="license" role="contentinfo">Licence</h2>
+                <p role="text">
+                    <a rel="license" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width: 0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
+                </p>
+            </article>
         </main>
         <footer>
             <a href="https://github.com/PhoenixR49" target="_blank" rel="noopener noreferrer"> <img alt="GitHub followers" src="https://img.shields.io/github/followers/PhoenixR49?style=social" /></a>

@@ -5,13 +5,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Primary Meta Tags -->
-        <title>YouTube Direct</title>
+        <title>YouTube Direct | YouTube Downloader</title>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index,nofollow" />
-        <meta name="title" content="YouTube Direct" />
+        <meta name="robots" content="index,follow" />
+        <meta name="title" content="YouTube Direct | YouTube Downloader" />
         <meta name="theme-color" content="#fe0000" />
         <meta name="author" content="Phoenix_R49" />
         <meta name="copyright" content="Phoenix_R49" />
@@ -21,15 +21,16 @@
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="YouTube Direct" />
+        <meta property="og:locale" content="en_EN" />
         <meta property="og:url" content="https://youtube-direct.vercel.app/" />
-        <meta property="og:title" content="YouTube Direct" />
+        <meta property="og:title" content="YouTube Direct | YouTube Downloader" />
         <meta property="og:description" content="How to download YouTube videos for FREE ? YouTube Direct is what you need. Download your videos online now !" />
         <meta property="og:image" content="https://youtube-direct.vercel.app/img/branding/social.png" />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://youtube-direct.vercel.app/" />
-        <meta property="twitter:title" content="YouTube Direct" />
+        <meta property="twitter:title" content="YouTube Direct | YouTube Downloader" />
         <meta property="twitter:description" content="How to download YouTube videos for FREE ? YouTube Direct is what you need. Download your videos online now !" />
         <meta property="twitter:image" content="https://youtube-direct.vercel.app/img/branding/social.png" />
 
@@ -48,6 +49,12 @@
         <title>YouTube Direct</title>
     </head>
     <body>
+        <header role="heading">
+            <nav>
+                <a href="/">Download</a>
+                <a href="/about">About</a>
+            </nav>
+        </header>
         <main role="main">
             <form action="" method="post" role="form">
                 <div>
@@ -61,7 +68,16 @@
                 <div id="download-link" role="alert"></div>
             </form>
         </main>
+        <footer>
+            <a href="https://github.com/PhoenixR49" target="_blank" rel="noopener noreferrer"> <img alt="GitHub followers" src="https://img.shields.io/github/followers/PhoenixR49?style=social" /></a>
+            <a href="https://github.com/PhoenixR49/youtube-direct/fork" target="_blank" rel="noopener noreferrer"><img alt="GitHub forks" src="https://img.shields.io/github/forks/PhoenixR49/youtube-direct?style=social" /></a>
+            <a href="https://github.com/PhoenixR49/youtube-direct" target="_blank" rel="noopener noreferrer"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/PhoenixR49/youtube-direct?style=social" /></a>
+            <a href="https://github.com/PhoenixR49/youtube-direct" target="_blank" rel="noopener noreferrer"><img alt="GitHub watchers" src="https://img.shields.io/github/watchers/PhoenixR49/youtube-direct?style=social" /></a>
+            <div id="wcb" class="carbonbadge wcb-d"></div>
+            <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+        </footer>
     </body>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/static/js/downloader.js"></script>
+    <script src="/static/js/script.js"></script>
 </html>
