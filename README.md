@@ -5,7 +5,6 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/PhoenixR49/youtube-direct/total)
 ![GitHub release (latest by date)](https://img.shields.io/github/downloads/PhoenixR49/youtube-direct/latest/total)
 ![GitHub Release Date](https://img.shields.io/github/release-date/PhoenixR49/youtube-direct)
-![GitHub](https://img.shields.io/github/license/PhoenixR49/youtube-direct)
 ![GitHub last commit](https://img.shields.io/github/last-commit/PhoenixR49/youtube-direct)
 
 ## Installation
