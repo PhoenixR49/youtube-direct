@@ -4,7 +4,7 @@ We take the security of this project very seriously. If you discover a vulnerabi
 
 ## How to report a vulnerability
 
-If you find a vulnerability, please contact : [youtube-direct.vercel.app/security-report](https://youtube-direct.vercel.app/security-report). We will review your report and take the necessary steps to address the vulnerability.
+If you find a vulnerability, please contact : [youtube-direct.vercel.app/security-issue](https://youtube-direct.vercel.app/security-issue). We will review your report and take the necessary steps to address the vulnerability.
 
 ## Responsibility
 
