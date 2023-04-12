@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+        <link rel="shortcut icon" href="/static/img/branding/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/static/img/branding/favicon.png" />
         <link rel="stylesheet" href="/static/css/style.css" />
         <link rel="stylesheet" href="/static/libs/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,66 +13,32 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index,follow" />
-        <meta name="title" content="YouTube Direct | Téléchargeur YouTube" />
-        <meta name="theme-color" content="#fe0000" />
         <meta name="author" content="Phoenix_R49" />
-        <meta name="copyright" content="Phoenix_R49" />
-        <meta name="description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Direct est ce dont vous avez besoin. Téléchargez vos vidéos maintenant !" />
-        <meta name="google-site-verification" content="9cS1Lkmw5QqpaY-hl40l3rcmCHeqquoQAIEod7DQoFs" />
-
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="YouTube Direct | Téléchargeur YouTube" />
-        <meta property="og:locale" content="fr_FR" />
-        <meta property="og:url" content="https://youtube-direct.vercel.app/" />
-        <meta property="og:title" content="YouTube Direct | Téléchargeur YouTube" />
-        <meta property="og:description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Direct est ce dont vous avez besoin. Téléchargez vos vidéos maintenant !" />
-        <meta property="og:image" content="https://youtube-direct.vercel.app/img/branding/social.png" />
-
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://youtube-direct.vercel.app/" />
-        <meta property="twitter:title" content="YouTube Direct | Téléchargeur YouTube" />
-        <meta property="twitter:description" content="Comment télécharger des vidéos YouTube GRATUITEMENT ? YouTube Direct est ce dont vous avez besoin. Téléchargez vos vidéos maintenant !" />
-        <meta property="twitter:image" content="https://youtube-direct.vercel.app/img/branding/social.png" />
-
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org/",
-                "@type": "Project",
-                "name": "YouTube Direct",
-                "url": "https://youtube-direct.vercel.app/",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressCountry": "France"
-                }
-            }
-        </script>
     </head>
     <body>
         <header role="heading">
             <nav>
-                <a href="/" class="active">Télécharger</a>
+                <a href="/" class="logo"><img src="/static/img/branding/favicon.png" alt="YouTube Direct logo" height="36px">YouTube Direct</a>
+                <a href="/" class="active">Téléchargeur</a>
                 <a href="/about">À propos</a>
             </nav>
         </header>
         <main role="main" class="center">
             <div class="downloader-container">
                 <form role="form" class="downloader row g-3 needs-validation" novalidate>
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" autocomplete="off" name="video" placeholder="Lien d'une vidéo YouTube ou recherche" aria-label="Search video or url input" required />
-                        <div class="invalid-feedback">Veuillez fournir un lien ou un recherche.</div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" autocomplete="off" name="video" placeholder="Lien d'une vidéo YouTube ou recherche" aria-label="Lien d'une vidéo YouTube ou recherche" required />
+                        <div class="invalid-feedback">Veuillez fournir un lien ou des termes de recherche.</div>
                     </div>
-                    <div class="col-md-5">
-                        <select class="form-select form-select" name="format" aria-label="Format select" required>
+                    <div class="col-md-6">
+                        <select class="form-static/select form-select" name="format" aria-label="Choisir le format" required>
                             <option selected disabled value="">Choisir le format dans lequel la vidéo sera téléchargée</option>
                             <option value="mp4">Vidéo et audio</option>
                             <option value="mp3">Audio uniquement</option>
                         </select>
                         <div class="invalid-feedback">Veuillez séléctionner le format de téléchargement.</div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-12">
                         <button class="btn btn-primary" type="submit" id="submit" role="button"></button>
                     </div>
                 </form>
@@ -78,16 +46,8 @@
                 <div class="col-md-12" id="download-link" role="alert"></div>
             </div>
         </main>
-        <footer>
-            <a href="https://github.com/PhoenixR49" target="_blank" rel="noopener noreferrer"> <img alt="GitHub followers" src="https://img.shields.io/github/followers/PhoenixR49?style=social" /></a>
-            <a href="https://github.com/PhoenixR49/youtube-direct/fork" target="_blank" rel="noopener noreferrer"><img alt="GitHub forks" src="https://img.shields.io/github/forks/PhoenixR49/youtube-direct?style=social" /></a>
-            <a href="https://github.com/PhoenixR49/youtube-direct" target="_blank" rel="noopener noreferrer"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/PhoenixR49/youtube-direct?style=social" /></a>
-            <a href="https://github.com/PhoenixR49/youtube-direct" target="_blank" rel="noopener noreferrer"><img alt="GitHub watchers" src="https://img.shields.io/github/watchers/PhoenixR49/youtube-direct?style=social" /></a>
-            <div id="wcb" class="carbonbadge wcb-d"></div>
-            <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
-        </footer>
     </body>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/static/js/downloader.js"></script>
     <script src="/static/js/script.js"></script>
+    <script src="/static/js/downloader.js"></script>
 </html>

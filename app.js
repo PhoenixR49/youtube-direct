@@ -6,14 +6,10 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const crypto = require("crypto");
 const axios = require("axios");
-const { SitemapStream, streamToPromise } = require("sitemap");
-const { createGzip } = require("zlib");
-const { Readable } = require("stream");
 require("dotenv").config();
 
 app.use("/static", express.static(__dirname + "/public/static/"));
 app.use("/static/libs/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist"));
-app.use("/robots.txt", express.static(__dirname + "/robots.txt"));
 
 const appStartDate = new Date();
 const pagesPath = __dirname + "/public/html/";
@@ -56,27 +52,6 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
     getUserLang(req);
     res.sendFile(pagesPath + lang + "/about.html");
-});
-
-app.get("/sitemap.xml", function (req, res) {
-    res.header("Content-Type", "application/xml");
-    res.header("Content-Encoding", "gzip");
-
-    try {
-        const smStream = new SitemapStream({ hostname: "https://" + process.env.APP_DOMAIN + "/" });
-        const pipeline = smStream.pipe(createGzip());
-
-        smStream.write({ url: "/", changefreq: "weekly", lastmod: appStartDate, priority: 1 });
-        smStream.write({ url: "/about", changefreq: "monthly", lastmod: appStartDate, priority: 0.8 });
-
-        smStream.end();
-        pipeline.pipe(res).on("error", (e) => {
-            throw e;
-        });
-    } catch (e) {
-        console.error(e);
-        res.status(500).end();
-    }
 });
 
 app.all("*", (request, response) => {

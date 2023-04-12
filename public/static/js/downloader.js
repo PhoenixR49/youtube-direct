@@ -1,4 +1,3 @@
-const socket = io();
 const form = document.querySelector("form");
 const submitButton = document.querySelector("#submit");
 const videoInput = document.getElementsByName("video")[0];
@@ -6,34 +5,6 @@ const formatInput = document.getElementsByName("format")[0];
 const downloadLink = document.getElementById("download-link");
 
 let isDownloading = false;
-
-(() => {
-    "use strict";
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll(".needs-validation");
-
-    // Loop over them and prevent submission
-    Array.from(forms).forEach((form) => {
-        form.addEventListener(
-            "submit",
-            (event) => {
-                event.preventDefault();
-                if (!form.checkValidity()) {
-                    event.stopPropagation();
-                } else {
-                    if (!isDownloading) {
-                        setDownloading();
-                        socket.emit("download-video", [videoInput.value, formatInput.value]);
-                    }
-                }
-
-                form.classList.add("was-validated");
-            },
-            false
-        );
-    });
-})();
 
 videoInput.addEventListener("input", (event) => {
     if (videoInput.value !== "") {
@@ -100,12 +71,6 @@ function setDownloaded(videoPath) {
         } else if (formatInput.value === "mp3") {
             downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;Télécharger l'audio</a>`;
         }
-    } else if (document.querySelector("html").lang === "zh") {
-        if (formatInput.value === "mp4") {
-            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;下载影片</a>`;
-        } else if (formatInput.value === "mp3") {
-            downloadLink.innerHTML = `<a href="${videoPath}" download><i class="fa-solid fa-file-download"></i>&nbsp;下载音频</a>`;
-        }
     }
     setDownloadButton("search");
     formatInput.removeAttribute("disabled");
@@ -121,8 +86,6 @@ function setDownloadButton(type) {
             submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Download';
         } else if (document.querySelector("html").lang === "fr") {
             submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;Télécharger';
-        } else if (document.querySelector("html").lang === "zh") {
-            submitButton.innerHTML = '<i class="fa-solid fa-download"></i>&nbsp;下载';
         }
         submitButton.removeAttribute("style");
     } else if (type === "search") {
@@ -130,8 +93,6 @@ function setDownloadButton(type) {
             submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;Search';
         } else if (document.querySelector("html").lang === "fr") {
             submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;Chercher';
-        } else if (document.querySelector("html").lang === "zh") {
-            submitButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>&nbsp;寻找';
         }
         submitButton.removeAttribute("style");
     } else if (type === "disabled") {
@@ -158,7 +119,7 @@ function setSearchResults(results) {
             document.querySelector(".search-results").innerHTML = "";
             document.querySelector(".search-results").classList.remove("visible");
             setDownloading();
-            socket.emit("download-video", [result.url, formatInput.value]);
+            socket.emit("download-video", { url: result.url, format: formatInput.value });
         });
     }
 }

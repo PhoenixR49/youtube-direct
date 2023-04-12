@@ -31,7 +31,7 @@ header {
     left: 0;
     width: 100%;
     min-width: 250px;
-    height: 70px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,13 +41,14 @@ header {
 header nav {
     width: 70%;
     min-width: 250px;
-    height: 75%;
+    height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--grey);
     border-radius: 16px;
     padding: 10px 20px;
+    position: relative;
 }
 
 header nav a {
@@ -90,12 +91,35 @@ header nav a.active::before {
     width: 100%;
 }
 
+header nav a.logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 18px;
+    color: white;
+    left: 20px;
+    margin: 0;
+}
+
+header nav a.logo::before {
+    display: none;
+}
+
+header nav a.logo img {
+    margin-right: 10px;
+}
+
+header nav a.logo:active {
+    transform: scale(0.9);
+}
+
 main {
     min-height: 100vh;
     width: 100%;
     padding: 20px;
     color: var(--white);
     background: var(--black);
+    padding-top: 90px;
 }
 
 article {
@@ -105,21 +129,6 @@ article {
 
 article h1 {
     font-size: 42px;
-}
-
-footer {
-    width: 100%;
-    min-height: 30px;
-    background: var(--grey);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 5px 20px;
-}
-
-footer a {
-    margin-right: 10px;
 }
 
 .center {
