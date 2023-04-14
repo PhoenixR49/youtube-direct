@@ -16,6 +16,7 @@ const pagesPath = __dirname + "/public/html/";
 const staticPath = __dirname + "/public/static/";
 
 let lang = "en";
+
 function getUserLang(request) {
     const supportedLanguages = fs.readdirSync("./public/html/");
     const userLangs = request.acceptsLanguages().toString().split(",");
@@ -62,17 +63,19 @@ io.on("connection", (socket) => {
     const roomId = socket.id;
     socket.join(roomId);
     socket.on("download-video", async (data) => {
-        const video = data[0];
-        const format = data[1];
+        const video = data.url;
+        const format = data.format;
         if (ytdl.validateURL(video)) {
             let stream;
             let videoRelativePath;
 
             let videoTitle;
-            await ytdl.getInfo(video).then((data) => {
-                videoTitle = data.videoDetails.title.toLocaleLowerCase().split(" ").join("-");
-            })
-            .catch(error => io.to(roomId).emit("error", error));
+            await ytdl
+                .getInfo(video)
+                .then((data) => {
+                    videoTitle = data.videoDetails.title.toLocaleLowerCase().split(" ").join("-");
+                })
+                .catch((error) => io.to(roomId).emit("error", error));
 
             if (format === "mp4") {
                 videoRelativePath = "/videos/" + videoTitle + "-" + crypto.randomBytes(8).toString("hex") + "." + format;
