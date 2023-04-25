@@ -1,6 +1,6 @@
 {
     "name": "youtube-direct",
-    "version": "1.0.0-beta-0",
+    "version": "1.0.0",
     "description": "How to download YouTube videos for FREE ? YouTube Direct is what you need. Download your videos online now !",
     "main": "app.js",
     "scripts": {
