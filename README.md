@@ -20,15 +20,13 @@ npm install
 npm start
 ```
 
-> If you have an alert whose content is: ytdl-core is out of date!Update with "npm install ytdl-core@latest", do not do it because this will cause bugs when downloading the video.
-
 ### Implementation of YouTube search
 
 - Rename the file ".env config" by ".env".
 - Open it with the code editor of your choice.
 - In the environment variable "YOUTUBE_API_KEY", replace "MY_API_KEY" by one [YouTube API key](#how-to-have-a-youtube-api-key).
 
-#### How to have a youtube API key ?
+#### How to have a YouTube API key ?
 
 - Go to [the Google Cloud Console](https://console.cloud.google.com).
 - Create a new project.

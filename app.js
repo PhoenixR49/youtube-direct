@@ -133,7 +133,7 @@ io.on("connection", (socket) => {
     });
 });
 
-http.listen(3000, () => {
+http.listen(process.env.APP_PORT, () => {
     console.log("The server is running !");
     setInterval(() => {
         const lunchingTime = Date.now() - appStartDate.getTime();
