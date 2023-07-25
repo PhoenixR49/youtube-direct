@@ -39,10 +39,10 @@ There you go, you have a YouTube Downloader running locally on your computer !
 
 ## Web App
 
-> Go to [the online version](https://youtube-direct.vercel.app/).
+> Go to [the online version](https://youtube-direct.netlify.app/).
 
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fyoutube-direct.vercel.app&style=for-the-badge)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/77eee56a-2fb5-42bc-86f8-fafd8f20b8c2/deploy-status)](https://app.netlify.com/sites/youtube-direct/deploys)
 
 ## License
 
-[YouTube Direct](https://youtube-direct.vercel.app/) by [Phoenix_R49](https://linktr.ee/Phoenix_R49) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
+[YouTube Direct](https://youtube-direct.netlify.app/) by [Phoenix_R49](https://linktr.ee/Phoenix_R49) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
