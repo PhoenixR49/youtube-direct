@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<link rel="shortcut icon" href="/static/img/branding/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="/static/img/branding/favicon.png" />
+		<link rel="stylesheet" href="/static/css/style.css" />
+		<link rel="stylesheet" href="/static/libs/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<!-- Primary Meta Tags -->
+		<title>YouTube Direct | About</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="index,nofollow" />
+		<meta name="title" content="YouTube Direct | About" />
+		<meta name="theme-color" content="#fe0000" />
+		<meta name="author" content="Phoenix_R49" />
+		<meta name="description" content="How to download YouTube videos? YouTube Direct is what you need, download YouTube videos and collect them in MP3 or MP4 format to be able to read them without connection!" />
+		<meta name="google-site-verification" content="9cS1Lkmw5QqpaY-hl40l3rcmCHeqquoQAIEod7DQoFs" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="YouTube Direct" />
+		<meta property="og:url" content="https://youtube-direct.vercel.app/" />
+		<meta property="og:title" content="<%= title %>" />
+		<meta property="og:description" content="How to download YouTube videos? YouTube Direct is what you need, download YouTube videos and collect them in MP3 or MP4 format to be able to read them without connection!" />
+		<meta property="og:image" content="https://youtube-direct.vercel.app/static/img/branding/social.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://youtube-direct.vercel.app/" />
+		<meta property="twitter:title" content="<%= title %>" />
+		<meta property="twitter:description" content="How to download YouTube videos? YouTube Direct is what you need, download YouTube videos and collect them in MP3 or MP4 format to be able to read them without connection!" />
+		<meta property="twitter:image" content="https://youtube-direct.vercel.app/static/img/branding/social.png" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org/",
+				"@type": "Project",
+				"name": "YouTube Direct",
+				"url": "https://youtube-direct.vercel.app/",
+				"address": {
+					"@type": "PostalAddress",
+					"addressCountry": "France"
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<%- include("../partials/header.ejs") %>
+		<main role="main">
+			<article>
+				<h1 id="introduction">YouTube Direct</h1>
+				<p><%= texts.about %></p>
+				<h2 id="license">License</h2>
+				<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/" role="contentinfo">
+					<a property="dct:title" rel="cc:attributionURL" href="https://youtube-direct.vercel.app/">YouTube Direct</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://linktr.ee/Phoenix_R49">Phoenix_R49</a> is licensed under
+					<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display: inline-block">CC BY-NC-SA 4.0<img style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" /><img style="height: 22px !important; margin-left: 3px; vertical-align: text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a>
+				</p>
+			</article>
+		</main>
+	</body>
+	<script src="/static/js/script.js"></script>
+</html>

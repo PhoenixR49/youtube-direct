@@ -1,0 +1,37 @@
+{
+    "all": {
+        "header": {
+            "downloader": "Téléchargeur",
+            "about": "À propos"
+        }
+    },
+    "home": {
+        "forms": {
+            "downloader": {
+                "feedbacks": {
+                    "invalids": {
+                        "searchTerms": "Veuillez fournir un lien ou des termes de recherche.",
+                        "format": "Veuillez sélectionner le format du téléchargement."
+                    }
+                },
+                "inputs": {
+                    "format": {
+                        "first": "Choisir le format dans lequel la vidéo sera téléchargée",
+                        "second": "Vidéo et audio",
+                        "third": "Audio uniquement"
+                    },
+                    "searchTerms": "Lien d'une vidéo YouTube ou mots clés"
+                }
+            }
+        },
+        "title": "YouTube Direct | Téléchargeur YouTube",
+        "description": "Un téléchargeur YouTube rapide et pratique pour capturer vos vidéos préférées. Téléchargez facilement des vidéos YouTube au format souhaité et profitez de votre contenu préféré hors ligne. YouTube Direct vous offre une expérience utilisateur intuitive avec des fonctionnalités avancées, vous permettant de télécharger rapidement et efficacement des vidéos de haute qualité depuis YouTube. Profitez de vos vidéos préférées où que vous soyez avec YouTube Direct."
+    },
+    "about": {
+        "title": "YouTube Direct | À propos",
+        "description": "Comment télécharger des vidéos YouTube ? YouTube Direct est ce dont vous avez besoin, téléchargez des vidéos YouTube et récupérez les en format MP3 ou MP4 pour pouvoir les lire sans connexion !",
+        "texts": {
+            "about": "YouTube Direct est un projet créé le 2 avril 2023 par Phoenix_R49 pour permettre à tout le monde de pouvoir télécharger des vidéos YouTube gratuitement et sans publicités."
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "all": {
+        "header": {
+            "downloader": "Downloader",
+            "about": "About"
+        }
+    },
+    "home": {
+        "forms": {
+            "downloader": {
+                "feedbacks": {
+                    "invalids": {
+                        "searchTerms": "Please provide a link or search terms.",
+                        "format": "Please select the download format."
+                    }
+                },
+                "inputs": {
+                    "format": {
+                        "first": "Choose the format in which the video will be downloaded",
+                        "second": "Video and audio",
+                        "third": "Audio only"
+                    },
+                    "searchTerms": "Link of a YouTube video or search terms"
+                }
+            }
+        },
+        "title": "YouTube Direct | YouTube Downloader",
+        "description": "A fast and convenient YouTube downloader to capture your favorite videos. Easily download YouTube videos in your desired format and enjoy your favorite content offline. YouTube Direct provides you with an intuitive user experience along with advanced features, allowing you to quickly and efficiently download high-quality videos from YouTube. Enjoy your favorite videos wherever you are with YouTube Direct."
+    },
+    "about": {
+        "title": "YouTube Direct | About",
+        "description": "How to download YouTube videos? YouTube Direct is what you need, download YouTube videos and collect them in MP3 or MP4 format to be able to read them without connection!",
+        "texts": {
+            "about": "YouTube Direct is a project created on April 2, 2023 by Phoenix_R49 to allow everyone to be able to download YouTube videos for free and without advertisements."
+        }
+    }
+}

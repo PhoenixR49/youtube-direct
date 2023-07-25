@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="shortcut icon" href="/static/img/branding/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="/static/img/branding/favicon.png" />
+		<link rel="stylesheet" href="/static/css/style.css" />
+		<link rel="stylesheet" href="/static/libs/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<!-- Primary Meta Tags -->
+		<title><%= title %></title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="index,follow" />
+		<meta name="title" content="<%= title %>" />
+		<meta name="theme-color" content="#fe0000" />
+		<meta name="author" content="Phoenix_R49" />
+		<meta name="description" content="<%= description %>" />
+		<meta name="google-site-verification" content="9cS1Lkmw5QqpaY-hl40l3rcmCHeqquoQAIEod7DQoFs" />
+		<meta name="ws:verification" content="78b9d3a9-d147-44fe-95c5-1c8edc764e2f">
+	
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="YouTube Direct" />
+		<meta property="og:url" content="https://youtube-direct.vercel.app/" />
+		<meta property="og:title" content="<%= title %>" />
+		<meta property="og:description" content="<%= description %>" />
+		<meta property="og:image" content="https://youtube-direct.vercel.app/static/img/branding/social.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://youtube-direct.vercel.app/" />
+		<meta property="twitter:title" content="<%= title %>" />
+		<meta property="twitter:description" content="<%= description %>" />
+		<meta property="twitter:image" content="https://youtube-direct.vercel.app/static/img/branding/social.png" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org/",
+				"@type": "Project",
+				"name": "YouTube Direct",
+				"url": "https://youtube-direct.vercel.app/",
+				"address": {
+					"@type": "PostalAddress",
+					"addressCountry": "France"
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<%- include("../partials/header.ejs") %>
+		<main role="main" class="center">
+			<div class="downloader-container">
+				<form role="form" class="downloader row g-3 needs-validation" novalidate>
+					<div class="col-md-6">
+						<input type="text" class="form-control" autocomplete="off" name="video" placeholder="<%= forms.downloader.inputs.searchTerms %>" aria-label="Link of a YouTube video or search terms" required />
+						<div class="invalid-feedback"><%= forms.downloader.feedbacks.searchTerms %></div>
+					</div>
+					<div class="col-md-6">
+						<select class="form-select form-select" name="format" aria-label="Choisir le format" required>
+							<option selected disabled value=""><%= forms.downloader.inputs.format.first %></option>
+							<option value="mp4"><%= forms.downloader.inputs.format.second %></option>
+							<option value="mp3"><%= forms.downloader.inputs.format.third %></option>
+						</select>
+						<div class="invalid-feedback"><%= forms.downloader.feedbacks.format %></div>
+					</div>
+					<div class="col-md-12">
+						<button class="btn btn-primary" type="submit" id="submit" role="button"></button>
+					</div>
+				</form>
+				<div class="col-md-12 search-results"></div>
+				<div class="col-md-12" id="download-link" role="alert"></div>
+			</div>
+		</main>
+	</body>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/static/js/index.js"></script>
+	<script src="/static/js/downloader.js"></script>
+</html>

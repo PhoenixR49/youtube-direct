@@ -1,0 +1,174 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const app = require("../app");
+const debug = require("debug")("wen:server");
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const ytdl = require("ytdl-core");
+const { Server } = require("socket.io");
+const crypto = require("crypto");
+const axios = require("axios");
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app);
+
+const io = new Server(server);
+
+io.on("connection", (socket) => {
+  const roomId = socket.id;
+  socket.join(roomId);
+  socket.on("download-video", async (data) => {
+    const video = data.url;
+    const { format } = data;
+    if (ytdl.validateURL(video)) {
+      let stream;
+      let videoRelativePath;
+
+      let videoTitle;
+      await ytdl
+        .getInfo(video)
+        .then((data) => {
+          videoTitle = data.videoDetails.title
+            .toLocaleLowerCase()
+            .split(" ")
+            .join("-");
+        })
+        .catch((error) => io.to(roomId).emit("error", error));
+
+      if (format === "mp4") {
+        videoRelativePath = `videos/${videoTitle}-${crypto
+          .randomBytes(8)
+          .toString("hex")}.${format}`;
+        stream = ytdl(video, {
+          filter: "audioandvideo",
+          quality: "highest",
+        });
+      } else if (format === "mp3") {
+        videoRelativePath = `audios/${videoTitle}-${crypto
+          .randomBytes(8)
+          .toString("hex")}.${format}`;
+        stream = ytdl(video, {
+          filter: "audioonly",
+          quality: "highest",
+        });
+      }
+
+      stream.on("finish", () => {
+        io.to(roomId).emit(
+          "video-downloaded",
+          path.join(__dirname, "../public", videoRelativePath)
+        );
+      });
+
+      const videoPath = path.join(__dirname, "../public", videoRelativePath);
+      stream.pipe(fs.createWriteStream(videoPath));
+    } else {
+      axios({
+        method: "GET",
+        url: `https://youtube.googleapis.com/youtube/v3/search?q=${video}&part=snippet&maxResults=25&order=relevance&type=video&key=${process.env.YOUTUBE_API_KEY}`,
+      })
+        .then((data) => {
+          data = data.data.items;
+          const resultsData = [];
+          for (let i = 0; i < data.length; i += 1) {
+            const video = data[i];
+            const videoData = {
+              url: `https://youtu.be/${video.id.videoId}`,
+              thumbnail: video.snippet.thumbnails.medium.url,
+              author: video.snippet.channelTitle,
+              title: video.snippet.title,
+              description: video.snippet.description,
+            };
+            resultsData.push(videoData);
+          }
+          io.to(roomId).emit("search-results", resultsData);
+        })
+        .catch((error) => {
+          console.error(error);
+          io.to(roomId).emit("error", error.code);
+        });
+    }
+  });
+  socket.on("videoInput-value", (value) => {
+    if (ytdl.validateURL(value)) {
+      socket.emit("videoInput-type", "default");
+    } else {
+      socket.emit("videoInput-type", "search");
+    }
+  });
+});
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+
+  const bind = typeof port === "string" ? `Pipe ${port}` : `Port ${port}`;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case "EACCES":
+      console.error(`${bind} requires elevated privileges`);
+      process.exit(1);
+    case "EADDRINUSE":
+      break;
+    default:
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+  debug(`Listening on ${bind}`);
+}
