@@ -1,7 +1,15 @@
 <header>
     <nav>
-        <a href="/" class="logo"><img src="/static/img/branding/favicon.png" alt="YouTube Direct logo" height="36px" />YouTube Direct</a>
-        <a href="/" class="active"><%= header.downloader %></a>
-        <a href="/about"><%= header.about %></a>
+        <a href="/" class="logo"><img src="/static/img/branding/favicon.png" alt="Logo" height="36px" />YouTube Direct</a>
+        <% if (page === "home") { %>
+            <a href="/" class="active" aria-current="page"><%= header.downloader %></a>
+        <% } else { %>
+            <a href="/"><%= header.downloader %></a>
+        <% } %>
+        <% if (page === "about") { %>
+            <a href="/about" class="active" aria-current="page"><%= header.about %></a>
+        <% } else { %>
+            <a href="/about"><%= header.about %></a>
+        <% } %>
     </nav>
 </header>

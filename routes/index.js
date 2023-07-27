@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.render("pages/index", {
+    page: "home",
     header: {
       downloader: req.t("all.header.downloader"),
       about: req.t("all.header.about"),
